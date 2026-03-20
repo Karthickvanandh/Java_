@@ -4,7 +4,16 @@ import java.util.*;
 
 public class matrixMultiplication {
 
-    public static int[][] Multiplication(int[][] arr1, int[][]arr2, int n, int m){
+    public static void printmatrix(int[][] arr, int n, int m){
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                System.out.print(arr[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static int[][] Multiply(int[][] arr1, int[][]arr2, int n, int m){
         int[][] res = new int[n][m];
         for(int i=0;i<n;i++){
             for(int j=0;j<m;j++){
@@ -26,13 +35,18 @@ public class matrixMultiplication {
                 arr1[i][j] = (rand.nextInt(100) +10);
             }
         }
+        System.out.println("Martix 1 ");
+        printmatrix(arr1, n, m);
+
         int[][] arr2 = new int[n][m];
         for(int i=0;i<n;i++){
             for(int j=0;j<m;j++){
                 arr2[i][j] = (rand.nextInt(100) +10);
             }
         }
-        int[][] ans = Multiplication(arr1, arr2, n, m);
+        System.out.println("Martix 1 ");
+        printmatrix(arr2, n, m);
+        int[][] ans = Multiply(arr1, arr2, n, m);
         for(int i=0;i<n;i++){
             for(int j=0;j<m;j++){
                 System.out.print(ans[i][j] + " ");
