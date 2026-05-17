@@ -1,4 +1,4 @@
-package Array;
+package Matrix;
 import java.util.*;
 
 public class addMatrix {
