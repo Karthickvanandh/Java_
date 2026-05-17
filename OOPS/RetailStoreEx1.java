@@ -72,6 +72,11 @@ class Bill{
     static void showTotalBills(){
         System.out.println("Total Bills: "+totalBill);
     }
+
+    void applyDiscount(int percent){
+        totalAmount = totalAmount - (totalAmount * percent/100);
+        System.out.println("Discount applied! New total: "+totalAmount);
+    }
 }
 
 public class RetailStoreEx1 {
@@ -90,5 +95,6 @@ public class RetailStoreEx1 {
         b1.addItem(p1, 3);
         b1.printBills();
         Bill.showTotalBills();
+        b1.applyDiscount(10);
     }    
 }
