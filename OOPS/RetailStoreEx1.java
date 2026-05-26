@@ -23,6 +23,15 @@ class Product{
             System.out.println("Price: " +price);
             System.out.println("Quantity: " +quantity);
         }
+
+        void isAvailable(){
+            if(quantity > 0){
+                System.out.println("In stock");
+            }
+            else{
+                System.out.println("Out of Stock");
+            }
+        }
 }
 
 class Customer{
@@ -77,6 +86,11 @@ class Bill{
         totalAmount = totalAmount - (totalAmount * percent/100);
         System.out.println("Discount applied! New total: "+totalAmount);
     }
+
+    void removeItem(Product p, int qty){
+        totalAmount -= p.price * qty;
+        System.out.println("Removed item: " +p.name);
+    }
 }
 
 public class RetailStoreEx1 {
@@ -92,9 +106,13 @@ public class RetailStoreEx1 {
         c2.showCustomer();
         Customer.showTotalCustomers();
         Bill b1 = new Bill(c1);
-        b1.addItem(p1, 3);
+        b1.addItem(p1, 5);
         b1.printBills();
         Bill.showTotalBills();
+        
+        b1.removeItem(p1, 2);
+        p1.isAvailable();
+        b1.printBills();
         b1.applyDiscount(10);
     }    
 }
