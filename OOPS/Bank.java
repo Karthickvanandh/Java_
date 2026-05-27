@@ -12,6 +12,12 @@ class BankAccount{
         this.phoneNumber = phoneNumber;
     }
 
+    // boolean login(){
+
+
+    // }
+
+
     void setBalance(double Balance){
         if(Balance < 0){
             System.out.println("Invalid Balance");
@@ -28,13 +34,35 @@ class BankAccount{
 
 class SavingsAccount extends BankAccount{
 
+    static String accountType = "Saving Account";
 
     SavingsAccount(String customerName, long accountNumber, long phoneNumber){
         super(customerName, accountNumber, phoneNumber);
+    }    
 
+    void Deposite(double amount){
+        if(getBalance() < 0){
+            System.out.println("Invalid Balance");
+        }
+        else{
+            setBalance(getBalance() + amount);
+            System.out.println("Amount deposited: " + amount);
+        }
     }
 
-    
+    void Withdraw(double amount){
+        if(getBalance() < 0){
+            System.out.println("Invalid Balance");
+        }
+        else{
+            setBalance(getBalance() - amount);
+            System.out.println("Amount withdraw: " + amount);
+        }
+    }
+
+    void displayBalance(){
+        System.out.println("Total balance: " + getBalance());
+    }
 }
 
 public class Bank {
@@ -46,6 +74,11 @@ public class Bank {
         System.out.println("Total Balance: " + s1.getBalance());
         s1.setBalance(1000);
         System.out.println("Total Balance: " + s1.getBalance());
+        s1.displayBalance();
+        s1.Deposite(20000);
+        s1.displayBalance();
+        s1.Withdraw(5000);
+        s1.displayBalance();
 
     }
     
