@@ -88,6 +88,17 @@ public class Bank {
             s1.displayBalance();
             s1.withdraw(5000);
             s1.displayBalance();
+            s1.display("AAA", 12332131, 1234567890);
+        }else{
+            System.out.println("Invalid credentials!");     
+        }
+        if(s2.login(45646446, "1234")){
+            s2.setBalance(1000);
+            System.out.println("Total Balance: " + s2.getBalance());
+            s2.displayBalance();
+            s2.deposite(2000);
+            s2.displayBalance();
+            s2.display("BBB", 45646446, 1654567890);
         }else{
             System.out.println("Invalid credentials!");     
         }
