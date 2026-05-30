@@ -22,7 +22,12 @@ class BankAccount{
         }
     }
     
-    
+    void display(String customerName, long accountNumber, long phoneNumber){
+        System.out.println("Customer Name: " + customerName);
+        System.out.println("Account Number: " + accountNumber);
+        System.out.println("Phone Number: " + phoneNumber);
+    }
+
     void setBalance(double Balance){
         if(Balance < 0){
             System.out.println("Invalid Balance");
@@ -74,6 +79,7 @@ class SavingsAccount extends BankAccount{
 public class Bank {
     public static void main(String args[]){
         SavingsAccount s1 = new SavingsAccount("AAA", 12332131, "1234", 1234567890);
+        SavingsAccount s2 = new SavingsAccount("BBB", 45646446, "4567", 1654567890);
         if(s1.login(12332131, "1234")){
             s1.setBalance(1000);
             System.out.println("Total Balance: " + s1.getBalance());
