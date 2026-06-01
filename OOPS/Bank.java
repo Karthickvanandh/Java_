@@ -21,7 +21,12 @@ class BankAccount{
             return false;
         }
     }
-    
+
+    void withdraw(double amount){
+        setBalance(getBalance() - amount);
+        System.out.println("Amount withdraw: " + amount);
+    }
+
     void display(String customerName, long accountNumber, long phoneNumber){
         System.out.println("Customer Name: " + customerName);
         System.out.println("Account Number: " + accountNumber);
@@ -61,13 +66,13 @@ class SavingsAccount extends BankAccount{
         }
     }
 
+    @Override
     void withdraw(double amount){
         if(getBalance() < 0){
             System.out.println("Invalid Balance");
         }
         else{
-            setBalance(getBalance() - amount);
-            System.out.println("Amount withdraw: " + amount);
+            super.withdraw(amount);
         }
     }
 
@@ -75,6 +80,8 @@ class SavingsAccount extends BankAccount{
         System.out.println("Total balance: " + getBalance());
     }
 }
+
+
 
 public class Bank {
     public static void main(String args[]){
