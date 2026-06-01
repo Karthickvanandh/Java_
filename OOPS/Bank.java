@@ -5,7 +5,7 @@ class BankAccount{
     private long accountNumber;
     private String password;
     long phoneNumber;
-    private double Balance;
+    protected double Balance;
 
     BankAccount(String customerName, long accountNumber, String password, long phoneNumber){
         this.customerName = customerName;
@@ -68,7 +68,7 @@ class SavingsAccount extends BankAccount{
 
     @Override
     void withdraw(double amount){
-        if(getBalance() < 0){
+        if((getBalance() - amount) < 500){
             System.out.println("Invalid Balance");
         }
         else{
@@ -81,7 +81,41 @@ class SavingsAccount extends BankAccount{
     }
 }
 
+class CurrentAccount extends BankAccount{
+    Double creditLimit = 0.0;
+    CurrentAccount(String customerName, long accountNumber, String password, long phoneNumber, Double creditLimit){
+        super(customerName, accountNumber, password, phoneNumber);
+        this.creditLimit = creditLimit;
+        this.Balance = creditLimit;
+    }
 
+    void deposite(double amount){
+        System.out.println("Amount due:" + (creditLimit - getBalance()));
+        setBalance(getBalance() + amount);
+        
+    }
+
+    @Override
+    void setBalance(double balance){
+        if(balance < -creditLimit){
+            System.out.println("Overdraft limit exceeded!");
+        }
+        else{
+            this.Balance = balance;
+        }
+    }
+
+    @Override
+    void withdraw(double amount){
+        if((getBalance() - amount < -creditLimit)){
+            System.out.println("Overdraft limit exceeded!");
+        }else{
+            super.withdraw(amount);
+        }
+    }
+
+
+}
 
 public class Bank {
     public static void main(String args[]){
@@ -109,7 +143,16 @@ public class Bank {
         }else{
             System.out.println("Invalid credentials!");     
         }
+        CurrentAccount c1 = new CurrentAccount("CCC", 46644656, "9874", 1797464875, 10000.0);
+        if(c1.login(46644656,"9874")){
+            c1.withdraw(2000);
+            c1.deposite(1000);
+            c1.withdraw(20000);
+        }else{
+            System.out.println("Invalid credentials!"); 
+        }
         
+      
 
     }
     
