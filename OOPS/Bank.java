@@ -1,6 +1,6 @@
 package OOPS;
 
-class BankAccount{
+abstract class BankAccount{
     String customerName;
     private long accountNumber;
     private String password;
@@ -22,10 +22,7 @@ class BankAccount{
         }
     }
 
-    void withdraw(double amount){
-        setBalance(getBalance() - amount);
-        System.out.println("Amount withdraw: " + amount);
-    }
+    abstract void withdraw(double amount);
 
     void display(String customerName, long accountNumber, long phoneNumber){
         System.out.println("Customer Name: " + customerName);
@@ -72,7 +69,8 @@ class SavingsAccount extends BankAccount{
             System.out.println("Invalid Balance");
         }
         else{
-            super.withdraw(amount);
+            setBalance(getBalance() - amount);
+            System.out.println("Balance Amount: " + getBalance());
         }
     }
 
@@ -110,7 +108,8 @@ class CurrentAccount extends BankAccount{
         if((getBalance() - amount < -creditLimit)){
             System.out.println("Overdraft limit exceeded!");
         }else{
-            super.withdraw(amount);
+            setBalance(getBalance() - amount);
+            System.out.println("Balance Amount: " + getBalance());
         }
     }
 
