@@ -1,5 +1,9 @@
 package OOPS;
 
+interface Transferable{
+    void transfer(double amount);
+}
+
 abstract class BankAccount{
     String customerName;
     private long accountNumber;
@@ -44,7 +48,7 @@ abstract class BankAccount{
     }
 }
 
-class SavingsAccount extends BankAccount{
+class SavingsAccount extends BankAccount implements Transferable{
 
     static String accountType = "Saving Account";
 
@@ -74,6 +78,10 @@ class SavingsAccount extends BankAccount{
         }
     }
 
+    @Override
+    public void transfer(double amount){
+        System.out.println("Amount Transfered: " + amount);
+    }
     void displayBalance(){
         System.out.println("Total balance: " + getBalance());
     }
