@@ -50,16 +50,18 @@ abstract class BankAccount{
 
 class SavingsAccount extends BankAccount implements Transferable{
 
-    static String accountType = "Saving Account";
 
     SavingsAccount(String customerName, long accountNumber, String password, long phoneNumber){
         super(customerName, accountNumber, password, phoneNumber);
     }
     
 
-    void deposite(double amount){
+    void deposit(double amount){
         if(getBalance() < 0){
             System.out.println("Invalid Balance");
+        }
+        if(amount <= 0){
+            System.out.println("Invalid Amount");
         }
         else{
             setBalance(getBalance() + amount);
@@ -87,17 +89,17 @@ class SavingsAccount extends BankAccount implements Transferable{
     }
 }
 
-class CurrentAccount extends BankAccount{
+class CurrentAccount extends BankAccount implements Transferable{
     Double creditLimit = 0.0;
     CurrentAccount(String customerName, long accountNumber, String password, long phoneNumber, Double creditLimit){
         super(customerName, accountNumber, password, phoneNumber);
         this.creditLimit = creditLimit;
-        this.Balance = creditLimit;
+        this.Balance = 0;
     }
 
-    void deposite(double amount){
-        System.out.println("Amount due:" + (creditLimit - getBalance()));
+    void deposit(double amount){
         setBalance(getBalance() + amount);
+        System.out.println("Amount due:" + (creditLimit - getBalance()));
         
     }
 
@@ -121,6 +123,11 @@ class CurrentAccount extends BankAccount{
         }
     }
 
+    @Override
+    public void transfer(double amount){
+        System.out.println("Amount Transfered: " + amount);
+    }
+
 
 }
 
@@ -132,11 +139,13 @@ public class Bank {
             s1.setBalance(1000);
             System.out.println("Total Balance: " + s1.getBalance());
             s1.displayBalance();
-            s1.deposite(20000);
+            s1.deposit(20000);
+            s1.transfer(20000);
             s1.displayBalance();
             s1.withdraw(5000);
             s1.displayBalance();
             s1.display("AAA", 12332131, 1234567890);
+            
         }else{
             System.out.println("Invalid credentials!");     
         }
@@ -144,7 +153,7 @@ public class Bank {
             s2.setBalance(1000);
             System.out.println("Total Balance: " + s2.getBalance());
             s2.displayBalance();
-            s2.deposite(2000);
+            s2.deposit(2000);
             s2.displayBalance();
             s2.display("BBB", 45646446, 1654567890);
         }else{
@@ -153,7 +162,8 @@ public class Bank {
         CurrentAccount c1 = new CurrentAccount("CCC", 46644656, "9874", 1797464875, 10000.0);
         if(c1.login(46644656,"9874")){
             c1.withdraw(2000);
-            c1.deposite(1000);
+            c1.deposit(1000);
+            c1.transfer(20000);
             c1.withdraw(20000);
         }else{
             System.out.println("Invalid credentials!"); 
