@@ -1,3 +1,4 @@
+package OOPS;
 import java.util.*;
 
 class InvalidDimensionException extends Exception{
@@ -17,6 +18,8 @@ abstract class Shape implements Measurable{
         this.color = color;
     }
     
+    public abstract double getArea() throws InvalidDimensionException;     
+    
 
 }
 
@@ -28,9 +31,12 @@ class Circle extends Shape{
         this.radius = radius;
     }    
 
-    double getArea(){
+    public double getArea() throws InvalidDimensionException {
         if(radius <= 0){
-            throw new InvalidDimensionException(); 
+            throw new InvalidDimensionException("Invalid radius"); 
+        }
+        else{
+            return Math.PI * radius * radius;
         }
     }
 
@@ -46,13 +52,11 @@ class Rectangle extends Shape{
         this.height = height;
     }
 
-    double getArea(){
+    public double getArea() throws InvalidDimensionException{
         if(width <= 0 || height <= 0){
-            throw new InvalidDimensionException();
+            throw new InvalidDimensionException("Invalid dimension");
         }else{
-            System.out.println("Rectangle color: " + color);
-            System.out.println("Rectangle Width: " + width);
-            System.out.println("Rectangle Height: " + height);
+            return width * height;
         }
     }
 }
@@ -61,15 +65,20 @@ public class ShapeCalculator {
     public static void main(String args[]){
         Circle c1 = new Circle("Blue", 12);
         try{
-            c1.getArea();
+            System.out.println("Circle area: " + c1.getArea());
         }catch(InvalidDimensionException e){
             System.out.println("Error: " + e);
+        }finally {
+            System.out.println("Calculation done");
         }
         Rectangle r1 = new Rectangle("White", 10, 0);
         try{
-            c1.getArea();
+            r1.getArea();
         }catch(InvalidDimensionException e){
             System.out.println("Error: " + e);
+        }
+        finally {
+            System.out.println("Calculation done");
         }
     }
    
