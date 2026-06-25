@@ -36,7 +36,7 @@ public class TodoArrayList {
                     }catch(IllegalArgumentException e){
                             System.out.println("Error: " + e);
                     }
-                    totaltask++;
+                    totaltask--;
                     break;
                 case 3:
                     for(int i=0;i<arr.size();i++){
