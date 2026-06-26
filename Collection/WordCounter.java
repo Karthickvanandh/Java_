@@ -8,12 +8,12 @@ public class WordCounter {
         String sentence = in.nextLine();
         String[] word = sentence.split(" ");
         for(int i=0;i<word.length;i++){
-            for(int j=0;j<word[i].length();j++){
-                if(map.containsKey(word[i][j])){
-                    map.containKey(word[i][j], ++1);
-                }
+            if(map.containsKey(word[i])){
+                map.put(word[i], map.get(word[i]) + 1);
+            }else{
+                map.put(word[i], 1);
             }
         }
-
+        System.out.println(map);
     }
 }
