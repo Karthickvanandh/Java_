@@ -20,7 +20,7 @@ public class LibraryCatlog {
         Scanner in = new Scanner(System.in);
         HashMap<Integer, Book> map = new HashMap<>();
         HashSet<String> set = new HashSet<>();
-        System.out.println("Enter the number of book: ");
+        System.out.println("Enter the number of book: ");   
         int n = in.nextInt();
         for(int i=0;i<n;i++){
             int bookId = in.nextInt();
@@ -33,6 +33,7 @@ public class LibraryCatlog {
             map.put(bookId, b);
             set.add(genre);
         }
+        //Search book
         System.out.println("Search book by book ID: ");
         int sBookId = in.nextInt();
         Book sBook = map.get(sBookId);
@@ -41,6 +42,19 @@ public class LibraryCatlog {
         }
         System.out.print(sBook.bookId + " " + sBook.title + " " + sBook.genre);
 
+        //Remove book
+        System.out.println("Enter the bookId to remove: ");
+        int removeBookId = in.nextInt();
+        Book rBook = map.get(removeBookId);
+        if(rBook == null){
+            throw new IllegalArgumentException("Book not found");
+        }
+        for(Book id : map.values()){
+            if(rBook.genre.equals(id.genre)){
+
+            }
+        }
+        map.remove(rBook);
     }
     
 }
