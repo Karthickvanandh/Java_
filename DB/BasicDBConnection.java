@@ -35,18 +35,22 @@ public class BasicDBConnection {
         insertst.setString(2, name);
         insertst.setDouble(3, salary);
         
-
-        st = conn.prepareStatement("SELECT * FROM employee");
-
-        while(rs.next()){
-            int id1 = rs.getInt("id");
-            String name1 = rs.getString("name");
-            double salary1 = rs.getDouble("salary");
+        int rowAffected = insertst.executeUpdate();
+        System.out.println(rowAffected);
+        
+        PreparedStatement getSt = conn.prepareStatement("SELECT * FROM employee");
+        ResultSet rs2 = getSt.executeQuery();
+        while(rs2.next()){
+            int id1 = rs2.getInt("id");
+            String name1 = rs2.getString("name");
+            double salary1 = rs2.getDouble("salary");
             System.out.println(id1 + " " + name1 + " " + salary1);
         }
 
         rs.close();
         st.close();
+        rs2.close();
+        getSt.close();
         conn.close();
     }
 }
